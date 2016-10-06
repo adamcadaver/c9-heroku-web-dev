@@ -1,9 +1,50 @@
 <!DOCTYPE html>
 <html>
     <head>
-        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+        <script>
+angular.module('formFlickr', [])
+    .controller('FlickrController', ['$scope', '$http', function ($scope, $http) {
+    $scope.images = {};
+    
+    $scope.search = function (tags) {
+    // build URL for Flickr API
+    var flickrAPI = "https://api.flickr.com/services/feeds/photos_public.gne";
+    
+    flickrAPI = flickrAPI + "?jsoncallback=JSON_CALLBACK"
+    + "&tags=" + encodeURIComponent($scope.tags)
+    + "&tagmode=all"
+    + "&format=json";
+    
+    $http.jsonp(flickrAPI)
+    .success(function (data, status, headers, config) {
+    $scope.images = data;
+    $scope.imagesStatus = status;
+
+})
+};
+}]);
+            
+            
+        </script>
     </head>
-    <body>
-        This is my first website... be gentle :)
+    <body ng-app="formFlickr" ng-controller="FlickrController">
+        <h1>Search Images with Flickr API</h1>
+        <form>
+            <input ng-model="tags"/>
+            <br />
+            <button type="submit" ng-click="search(tags)">
+                Search Flicker
+            </button>
+        </form>
+        <div ng-if="images.items.length > 0">
+            <h3>
+                {{images.title}}
+            </h3>
+            <figure ng-repeat="i in images.items">
+                <img src="{{i.media.m}}" />
+                <figcaption>{{i.title}}</figcaption>
+            </figure>
+        </div>
     </body>
 </html>
