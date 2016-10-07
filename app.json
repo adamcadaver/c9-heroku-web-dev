@@ -1,0 +1,7 @@
+{
+  "name": "Getting Started in Js Web Development",
+  "description": "Simple tutorial on get started in web development",
+  "repository": "https://github.com/adamcadaver/getting-started-web-dev-js",
+  "logo": "http://www.webdevelopersnotes.com/wp-content/uploads/javascript-arrays-creating-and-storing-values-200x200.png",
+  "keywords": ["expressjs", "node", "angular", "javascript", "getting-started"]
+}
