@@ -11,7 +11,7 @@ I used a bare [Cloud 9](c9.io) VM as my development machine. I really recommend 
 mkdir myapp
 cd myapp
 npm init
-npm install --save express
+npm install --save express path
 touch index.js
 ```
 Enter the following code into index.js:
